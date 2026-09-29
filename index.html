@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>capp-adocia</title>
+  <meta name="description" content="capp-adocia 的个人主页">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px;
+    }
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      object-fit: cover;
+      background: var(--card);
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+    .tagline {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    p { color: var(--text); font-size: 0.95rem; }
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    ul li {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .links a:hover {
+      border-bottom-color: var(--accent);
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <!-- 换成你的头像，没有就删掉这行 -->
+      <img class="avatar" src="avatar.jpg" alt="头像" onerror="this.style.display='none'">
+      <div>
+        <h1>capp-adocia</h1>
+        <p class="tagline">一句话介绍自己 · 比如：C++ / 图形学 / 系统编程</p>
+      </div>
+    </header>
+
+    <section>
+      <h2>关于我</h2>
+      <p>这里写一段自我介绍。可以说说你在做什么、对什么感兴趣、正在学什么。</p>
+    </section>
+
+    <section>
+      <h2>技能</h2>
+      <ul>
+        <li>C++</li>
+        <li>OpenGL</li>
+        <li>Linux</li>
+        <li>CMake</li>
+        <li>Git</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>项目</h2>
+      <p>VortexEngine — 一个自己写的图形引擎。</p>
+      <!-- 有链接就加：<p><a href="https://github.com/capp-adocia/VortexEngine">GitHub 仓库</a></p> -->
+    </section>
+
+    <section>
+      <h2>联系</h2>
+      <div class="links">
+        <a href="https://github.com/capp-adocia" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:you@example.com">Email</a>
+        <!-- 有其他平台就加：<a href="...">博客</a> -->
+      </div>
+    </section>
+
+    <footer>
+      © 2026 capp-adocia
+    </footer>
+  </div>
+</body>
+</html>
