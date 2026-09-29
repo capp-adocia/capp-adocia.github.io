@@ -301,35 +301,29 @@
   <!-- 右上角工具栏 -->
   <div class="toolbar">
     <button id="theme-toggle" title="切换主题">🌙</button>
-    <button id="lang-toggle" title="切换语言">中</button>
   </div>
 
   <div class="layout">
 
     <!-- 左侧 1/4：个人信息 -->
     <aside class="sidebar">
-      <div class="username" data-i18n="username">capp-adocia</div>
-      <div class="userinfo" data-i18n="userinfo">C++ / 图形学 / 系统编程</div>
+      <div class="username" data-field="username"></div>
+      <div class="userinfo" data-field="userinfo"></div>
 
       <img class="avatar" src="image/githublogo.jpg" alt="头像" onerror="this.style.visibility='hidden'">
 
       <div class="profile-meta">
-        <div class="meta-item"><span data-i18n="realname_label">真实姓名</span><strong data-i18n="realname_value">司岚</strong></div>
-        <div class="meta-item"><span data-i18n="birth_label">出生年月</span><strong data-i18n="birth_value">2003.08.26</strong></div>
-        <div class="meta-item"><span data-i18n="nationality_label">国籍</span><strong data-i18n="nationality_value">中国</strong></div>
-        <div class="meta-item"><span data-i18n="role_label">身份</span><strong data-i18n="role_value">开发者</strong></div>
+        <div class="meta-item"><span data-field="realnameLabel"></span><strong data-field="realnameValue"></strong></div>
+        <div class="meta-item"><span data-field="birthLabel"></span><strong data-field="birthValue"></strong></div>
+        <div class="meta-item"><span data-field="nationalityLabel"></span><strong data-field="nationalityValue"></strong></div>
+        <div class="meta-item"><span data-field="roleLabel"></span><strong data-field="roleValue"></strong></div>
       </div>
 
-      <div class="interest-tags">
-        <span data-i18n="tag_graphics">图形学</span>
-        <span data-i18n="tag_cpp">C++</span>
-        <span data-i18n="tag_linux">Linux</span>
-        <span data-i18n="tag_opensource">开源</span>
-      </div>
+      <div class="interest-tags" id="interest-tags"></div>
 
       <div class="links">
-        <a href="https://github.com/capp-adocia" target="_blank" rel="noopener" data-i18n="github">GitHub</a>
-        <a href="mailto:2636427505@qq.com" data-i18n="email">Email</a>
+        <a id="github-link" target="_blank" rel="noopener" data-field="githubLabel"></a>
+        <a id="email-link" data-field="emailLabel"></a>
       </div>
     </aside>
 
@@ -337,69 +331,39 @@
     <main class="main">
 
       <section>
-        <h2 data-i18n="about_title">About me</h2>
-        <p data-i18n="about_body">我是 capp-adocia，一名关注计算机图形学与系统编程的开发者。</p>
-        <p class="lead" data-i18n="about_detail">喜欢从底层理解程序如何运行，也享受把复杂问题逐步拆解、实现和优化的过程。</p>
+        <h2 data-field="aboutTitle"></h2>
+        <p data-field="aboutBody"></p>
+        <p class="lead" data-field="aboutDetail"></p>
       </section>
 
       <section>
-        <h2 data-i18n="skills_title">技能</h2>
-        <div class="tags">
-          <span>C++</span><span>OpenGL</span><span>Linux</span><span>CMake</span><span>Git</span>
-        </div>
+        <h2 data-field="skillsTitle"></h2>
+        <div class="tags" id="skills-tags"></div>
       </section>
 
       <section>
-        <h2 data-i18n="projects_title">项目</h2>
-        <p data-i18n="projects_body">VortexEngine — 一个自己写的图形引擎。</p>
+        <h2 data-field="projectsTitle"></h2>
+        <p data-field="projectsBody"></p>
       </section>
 
       <section>
-        <h2 data-i18n="hobbies_title">兴趣爱好</h2>
-        <div class="grid">
-          <div class="card">
-            <h3 data-i18n="hobby_code_title">编程与图形学</h3>
-            <p data-i18n="hobby_code_body">研究渲染技术、引擎架构与性能优化。</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="hobby_linux_title">折腾 Linux</h3>
-            <p data-i18n="hobby_linux_body">喜欢配置开发环境、尝试不同发行版和桌面工具。</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="hobby_open_title">开源与技术阅读</h3>
-            <p data-i18n="hobby_open_body">关注开源项目，阅读源码和优秀技术文档。</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="hobby_other_title">日常爱好</h3>
-            <p data-i18n="hobby_other_body">听音乐、看动画，以及偶尔玩一些单机游戏。</p>
-          </div>
-        <div class="card">
-            <h3 data-i18n="hobby_os_title">常用操作系统</h3>
-            <p data-i18n="hobby_os_body">操作系统偏爱 Linux 家族，目前笔记本在用 Windows 10 专业版，台式电脑正在用 Ubuntu 26.04。Linux 目前最大的问题是驱动，其他方面还好。</p>
-          </div>
-
-        </div>
+        <h2 data-field="hobbiesTitle"></h2>
+        <div class="grid" id="hobbies-grid"></div>
       </section>
 
       <section>
-        <h2 data-i18n="tools_title">常用工具</h2>
-        <div class="tags">
-            <span>Neovim / Visual Stdio</span>
-            <span>Clang / GCC</span>
-            <span>CMake</span>
-            <span>Git</span>
-            <span>RenderDoc</span>
-        </div>
+        <h2 data-field="toolsTitle"></h2>
+        <div class="tags" id="tools-tags"></div>
       </section>
 
       <section>
-        <h2 data-i18n="platforms_title">常逛平台</h2>
-        <p data-i18n="platforms_body">GitHub、Stack Overflow、Bilibili 和各类开发者社区。</p>
+        <h2 data-field="platformsTitle"></h2>
+        <p data-field="platformsBody"></p>
       </section>
 
       <section>
-        <h2 data-i18n="contact_title">联系</h2>
-        <p data-i18n="contact_body">想交流或者合作，可以通过GitHub或Email找我。</p>
+        <h2 data-field="contactTitle"></h2>
+        <p data-field="contactBody"></p>
       </section>
 
     </main>
@@ -425,68 +389,81 @@
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    // ===== 语言切换（插槽，暂只支持中文） =====
-    const translations = {
-      zh: {
-        username: 'capp-adocia',
-        userinfo: 'C++ / 图形学 / 系统编程',
-        github: 'GitHub',
-        email: 'Email',
-        about_title: 'About me',
-        about_body: '我是capp-adocia，一名关注计算机图形学与系统编程的开发者。',
-        about_detail: '喜欢从底层理解程序如何运行，也享受把复杂问题逐步拆解、实现和优化的过程。',
-        skills_title: 'Skills',
-        projects_title: 'Projects',
-        projects_body: 'VortexEngine 一个自己写的图形引擎。',
-        hobbies_title: '喜好',
-        hobby_code_title: '编程与图形学',
-        hobby_code_body: '研究渲染技术、引擎架构与性能优化。',
-        hobby_linux_title: '享受Linux',
-        hobby_linux_body: '喜欢配置开发环境、尝试不同发行版和桌面工具。',
-        hobby_open_title: '开源与技术阅读',
-        hobby_open_body: '喜欢阅读源码和优秀技术文档。',
-        hobby_other_title: '日常兴趣',
-        hobby_other_body: '喜欢下棋，比如金铲铲、酒馆战棋，偶尔玩玩一些单机游戏',
-        hobby_os_title: '常用操作系统',
-        hobby_os_body: '操作系统偏爱Linux家族的，目前笔记本在用Windows10专业版本，台式电脑正在用Ubuntu 26.04，Linux目前我感觉现在最大的问题就是驱动，其他问题还好。',
-        tools_title: 'Common Tools',
-        platforms_title: '常逛平台',
-        platforms_body: 'GitHub、Stack Overflow、Bilibili和各类开发者社区。',
-        contact_title: 'Contact',
-        contact_body: '想交流或者合作，可以通过GitHub或Email找我。',
-        realname_label: '姓名', realname_value: '司岚',
-        birth_label: '出生年月', birth_value: '2003.08.26',
-        nationality_label: '国籍', nationality_value: '中国',
-        role_label: '身份', role_value: '学生',
-        tag_graphics: 'Computer Graphics', tag_cpp: 'C++', tag_linux: 'Linux', tag_opensource: 'Open Source',
-      },
-      en: {}
+    // ===== 页面数据：统一在这里维护 =====
+    const pageData = {
+      pageTitle: 'capp-adocia',
+      username: 'capp-adocia',
+      userinfo: 'C++ / 图形学 / 系统编程',
+      realnameLabel: '真实姓名',
+      realnameValue: '司岚',
+      birthLabel: '出生年月',
+      birthValue: '2003.08.26',
+      nationalityLabel: '国籍',
+      nationalityValue: '中国',
+      roleLabel: '身份',
+      roleValue: '学生',
+      githubLabel: 'GitHub',
+      githubUrl: 'https://github.com/capp-adocia',
+      emailLabel: 'Email',
+      emailUrl: 'mailto:2636427505@qq.com',
+      tags: ['图形学', 'C++', 'Linux', '开源'],
+      aboutTitle: 'About me',
+      aboutBody: '我是 capp-adocia，一名关注计算机图形学与系统编程的开发者。',
+      aboutDetail: '喜欢从底层理解程序如何运行，也享受把复杂问题逐步拆解、实现和优化的过程。',
+      skillsTitle: '技能',
+      skills: ['C++', 'OpenGL', 'Linux', 'CMake', 'Git'],
+      projectsTitle: '项目',
+      projectsBody: 'VortexEngine — 一个自己写的图形引擎。',
+      hobbiesTitle: '兴趣爱好',
+      hobbies: [
+        { title: '编程与图形学', body: '研究渲染技术、引擎架构与性能优化。' },
+        { title: '折腾 Linux', body: '喜欢配置开发环境、尝试不同发行版和桌面工具。' },
+        { title: '开源与技术阅读', body: '关注开源项目，阅读源码和优秀技术文档。' },
+        { title: '日常爱好', body: '喜欢下棋，比如金铲铲、酒馆战棋，偶尔玩一些单机游戏。' },
+        { title: '常用操作系统', body: '操作系统偏爱 Linux 家族，目前笔记本在用 Windows 10 专业版，台式电脑在用 Ubuntu 26.04。Linux 目前最大的问题是驱动，其他方面还好。' }
+      ],
+      toolsTitle: '常用工具',
+      tools: ['Neovim / Visual Studio', 'Clang / GCC', 'CMake', 'Git', 'RenderDoc'],
+      platformsTitle: '常逛平台',
+      platformsBody: 'GitHub、Stack Overflow、Bilibili 和各类开发者社区。',
+      contactTitle: '联系',
+      contactBody: '想交流或者合作，可以通过 GitHub 或 Email 找我。'
     };
 
-    const langToggle = document.getElementById('lang-toggle');
-
-    function applyLang(lang) {
-      const hasTranslation =
-        translations[lang] && Object.keys(translations[lang]).length > 0;
-      const activeLang = hasTranslation ? lang : 'zh';
-      const dict = translations[activeLang];
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key] !== undefined) el.textContent = dict[key];
+    function renderText() {
+      document.querySelectorAll('[data-field]').forEach(el => {
+        const value = pageData[el.dataset.field];
+        if (typeof value === 'string') el.textContent = value;
       });
-
-      document.documentElement.lang = activeLang === 'zh' ? 'zh-CN' : 'en';
-      langToggle.textContent = activeLang === 'zh' ? 'zh-CN' : 'EN';
-      localStorage.setItem('lang', activeLang);
+      document.title = pageData.pageTitle;
     }
 
-    applyLang(localStorage.getItem('lang') || 'zh');
+    function renderTags(id, items) {
+      document.getElementById(id).innerHTML = items
+        .map(item => `<span>${item}</span>`)
+        .join('');
+    }
 
-    langToggle.addEventListener('click', () => {
-      const current = localStorage.getItem('lang') || 'zh';
-      applyLang(current === 'zh' ? 'en' : 'zh');
-    });
+    function renderContent() {
+      renderText();
+      renderTags('interest-tags', pageData.tags);
+      renderTags('skills-tags', pageData.skills);
+      renderTags('tools-tags', pageData.tools);
+
+      document.getElementById('hobbies-grid').innerHTML = pageData.hobbies
+        .map(hobby => `
+          <div class="card">
+            <h3>${hobby.title}</h3>
+            <p>${hobby.body}</p>
+          </div>
+        `)
+        .join('');
+
+      document.getElementById('github-link').href = pageData.githubUrl;
+      document.getElementById('email-link').href = pageData.emailUrl;
+    }
+
+    renderContent();
   </script>
 </body>
 </html>
