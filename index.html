@@ -1,48 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>capp-adocia</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    @font-face {
-        font-family: '0xProtoPropo';
-        src: url('fonts/0xProtoNerdFontPropo-Regular.ttf') format('truetype');
-        font-weight: 400;
-        font-display: swap;
+/* ===== 主题变量 ===== */
+    :root[data-theme="dark"] {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --card: #161b22;
+      --link: #58a6ff;
+      --btn-bg: #21262d;
+      --btn-hover: #30363d;
     }
 
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --text: #1f2328;
+      --muted: #656d76;
+      --border: #d0d7de;
+      --card: #f6f8fa;
+      --link: #0969da;
+      --btn-bg: #f6f8fa;
+      --btn-hover: #eaeef2;
+    }
+
+    /* ===== 字体 ===== */
     @font-face {
-        font-family: '0xProtoPropo';
-        src: url('fonts/0xProtoNerdFontPropo-Bold.ttf') format('truetype');
-        font-weight: 600;
-        font-display: swap;
+      font-family: '0xProtoPropo';
+      src: url('fonts/0xProtoNerdFontPropo-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: '0xProtoPropo';
+      src: url('fonts/0xProtoNerdFontPropo-Bold.ttf') format('truetype');
+      font-weight: 600;
+      font-display: swap;
     }
 
     body {
       font-family: '0xProtoPropo', -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
-      background: #ffffff;
-      color: #1f2328;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
     }
 
+    /* ===== 顶部工具栏（固定右上角） ===== */
+    .toolbar {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .toolbar button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--btn-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .toolbar button:hover {
+      background: var(--btn-hover);
+      border-color: var(--link);
+      color: var(--link);
+    }
+
+    /* ===== 布局 ===== */
     .layout {
       display: flex;
       min-height: 100vh;
     }
 
-    /* 左侧 1/3 */
+    /* 左侧 1/4 */
     .sidebar {
-      flex: 1;
-      border-right: 1px solid #e1e4e8;
+      flex: 0 0 25%;
+      border-right: 1px solid var(--border);
       padding: 48px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     .username {
@@ -53,23 +109,57 @@
 
     .userinfo {
       font-size: 0.9rem;
-      color: #656d76;
+      color: var(--muted);
       margin-bottom: 28px;
     }
 
     .avatar {
-      width: 120px;
-      height: 120px;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
       object-fit: cover;
-      background: #f0f0f0;
-      border: 1px solid #e1e4e8;
-      margin-bottom: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .profile-meta {
+      width: 100%;
+      max-width: 240px;
+      margin-bottom: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 2px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+
+    .meta-item span {
+      color: var(--muted);
+    }
+
+    .meta-item strong {
+      font-weight: 400;
+      text-align: right;
+    }
+
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      max-width: 240px;
+      margin-bottom: 22px;
     }
 
     .links {
       width: 100%;
-      max-width: 200px;
+      max-width: 220px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -78,33 +168,34 @@
     .links a {
       display: block;
       padding: 10px 16px;
-      border: 1px solid #d0d7de;
+      border: 1px solid var(--border);
       border-radius: 8px;
       text-decoration: none;
-      color: #1f2328;
+      color: var(--text);
       font-size: 0.9rem;
       text-align: center;
-      transition: background 0.15s, border-color 0.15s;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
     }
 
     .links a:hover {
-      background: #f6f8fa;
-      border-color: #0969da;
-      color: #0969da;
+      background: var(--card);
+      border-color: var(--link);
+      color: var(--link);
     }
 
-    /* 右侧 2/3 */
+    /* 右侧 3/4 */
     .main {
-      flex: 2;
+      flex: 1;
       padding: 48px 56px;
       overflow-y: auto;
+      max-width: 1100px;
     }
 
     .main h2 {
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 12px;
-      color: #1f2328;
+      color: var(--text);
     }
 
     .main section {
@@ -113,8 +204,13 @@
 
     .main p {
       font-size: 0.95rem;
-      color: #1f2328;
+      color: var(--text);
       margin-bottom: 12px;
+    }
+
+    .main .lead {
+      color: var(--muted);
+      font-size: 1rem;
     }
 
     .main ul {
@@ -124,14 +220,55 @@
 
     .main ul li {
       font-size: 0.95rem;
-      color: #1f2328;
+      color: var(--text);
       padding: 4px 0;
     }
 
     .main ul li::before {
       content: "·";
-      color: #656d76;
+      color: var(--muted);
       margin-right: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+    }
+
+    .card h3 {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags span,
+    .interest-tags span {
+      padding: 3px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.8rem;
     }
 
     /* 窄屏：上下堆叠 */
@@ -141,62 +278,213 @@
       }
       .sidebar {
         border-right: none;
-        border-bottom: 1px solid #e1e4e8;
+        border-bottom: 1px solid var(--border);
         padding: 32px 24px;
+        position: static;
+        height: auto;
       }
       .main {
         padding: 32px 24px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .toolbar {
+        top: 12px;
+        right: 12px;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- 右上角工具栏 -->
+  <div class="toolbar">
+    <button id="theme-toggle" title="切换主题">🌙</button>
+    <button id="lang-toggle" title="切换语言">中</button>
+  </div>
+
   <div class="layout">
 
-    <!-- 左侧 1/3：个人信息 -->
+    <!-- 左侧 1/4：个人信息 -->
     <aside class="sidebar">
-      <div class="username">capp-adocia</div>
-      <div class="userinfo">C++ / 图形学 / 系统编程</div>
+      <div class="username" data-i18n="username">capp-adocia</div>
+      <div class="userinfo" data-i18n="userinfo">C++ / 图形学 / 系统编程</div>
 
       <img class="avatar" src="image/githublogo.jpg" alt="头像" onerror="this.style.visibility='hidden'">
 
+      <div class="profile-meta">
+        <div class="meta-item"><span data-i18n="realname_label">真实姓名</span><strong data-i18n="realname_value">待补充</strong></div>
+        <div class="meta-item"><span data-i18n="birth_label">出生年月</span><strong data-i18n="birth_value">待补充</strong></div>
+        <div class="meta-item"><span data-i18n="nationality_label">国籍</span><strong data-i18n="nationality_value">中国</strong></div>
+        <div class="meta-item"><span data-i18n="role_label">身份</span><strong data-i18n="role_value">开发者</strong></div>
+      </div>
+
+      <div class="interest-tags">
+        <span data-i18n="tag_graphics">图形学</span>
+        <span data-i18n="tag_cpp">C++</span>
+        <span data-i18n="tag_linux">Linux</span>
+        <span data-i18n="tag_opensource">开源</span>
+      </div>
+
       <div class="links">
-        <a href="https://github.com/capp-adocia" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:2636427505@qq.com">Email</a>
+        <a href="https://github.com/capp-adocia" target="_blank" rel="noopener" data-i18n="github">GitHub</a>
+        <a href="mailto:2636427505@qq.com" data-i18n="email">Email</a>
       </div>
     </aside>
 
-    <!-- 右侧 2/3：个人介绍 -->
+    <!-- 右侧 3/4：个人介绍 -->
     <main class="main">
 
       <section>
-        <h2>About Me</h2>
-        <p>我是capp-adocia，欢迎来到这里。</p>
+        <h2 data-i18n="about_title">About me</h2>
+        <p data-i18n="about_body">我是 capp-adocia，一名关注计算机图形学与系统编程的开发者。</p>
+        <p class="lead" data-i18n="about_detail">喜欢从底层理解程序如何运行，也享受把复杂问题逐步拆解、实现和优化的过程。</p>
       </section>
 
       <section>
-        <h2>技能</h2>
-        <ul>
-          <li>C++</li>
-          <li>OpenGL</li>
-          <li>Linux</li>
-          <li>CMake</li>
-          <li>Git</li>
-        </ul>
+        <h2 data-i18n="skills_title">技能</h2>
+        <div class="tags">
+          <span>C++</span><span>OpenGL</span><span>Linux</span><span>CMake</span><span>Git</span>
+        </div>
       </section>
 
       <section>
-        <h2>项目</h2>
-        <p>VortexEngine — 一个自己写的图形引擎。</p>
+        <h2 data-i18n="projects_title">项目</h2>
+        <p data-i18n="projects_body">VortexEngine — 一个自己写的图形引擎。</p>
       </section>
 
       <section>
-        <h2>联系</h2>
-        <p>想交流或者合作，可以通过GitHub或Email找我。</p>
+        <h2 data-i18n="hobbies_title">兴趣爱好</h2>
+        <div class="grid">
+          <div class="card">
+            <h3 data-i18n="hobby_code_title">编程与图形学</h3>
+            <p data-i18n="hobby_code_body">研究渲染技术、引擎架构与性能优化。</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="hobby_linux_title">折腾 Linux</h3>
+            <p data-i18n="hobby_linux_body">喜欢配置开发环境、尝试不同发行版和桌面工具。</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="hobby_open_title">开源与技术阅读</h3>
+            <p data-i18n="hobby_open_body">关注开源项目，阅读源码和优秀技术文档。</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="hobby_other_title">日常爱好</h3>
+            <p data-i18n="hobby_other_body">听音乐、看动画，以及偶尔玩一些单机游戏。</p>
+          </div>
+        <div class="card">
+            <h3 data-i18n="hobby_os_title">常用操作系统</h3>
+            <p data-i18n="hobby_os_body"></p>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2 data-i18n="tools_title">常用工具</h2>
+        <div class="tags">
+            <span>Neovim / Visual Stdio</span>
+            <span>Clang / GCC</span>
+            <span>CMake</span>
+            <span>Git</span>
+            <span>RenderDoc</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 data-i18n="platforms_title">常逛平台</h2>
+        <p data-i18n="platforms_body">GitHub、Stack Overflow、Bilibili 和各类开发者社区。</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="contact_title">联系</h2>
+        <p data-i18n="contact_body">想交流或者合作，可以通过GitHub或Email找我。</p>
       </section>
 
     </main>
 
   </div>
+
+  <script>
+    // ===== 主题切换 =====
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', theme);
+    }
+
+    // 初始化：优先 localStorage，否则默认 dark
+    applyTheme(localStorage.getItem('theme') || 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // ===== 语言切换（插槽，暂只支持中文） =====
+    const translations = {
+      zh: {
+        username: 'capp-adocia',
+        userinfo: 'C++ / 图形学 / 系统编程',
+        github: 'GitHub',
+        email: 'Email',
+        about_title: 'About me',
+        about_body: '我是capp-adocia，一名关注计算机图形学与系统编程的开发者。',
+        about_detail: '喜欢从底层理解程序如何运行，也享受把复杂问题逐步拆解、实现和优化的过程。',
+        skills_title: 'Skills',
+        projects_title: 'Projects',
+        projects_body: 'VortexEngine 一个自己写的图形引擎。',
+        hobbies_title: '喜好',
+        hobby_code_title: '编程与图形学',
+        hobby_code_body: '研究渲染技术、引擎架构与性能优化。',
+        hobby_linux_title: '享受Linux',
+        hobby_linux_body: '喜欢配置开发环境、尝试不同发行版和桌面工具。',
+        hobby_open_title: '开源与技术阅读',
+        hobby_open_body: '喜欢阅读源码和优秀技术文档。',
+        hobby_other_title: '日常兴趣',
+        hobby_other_body: '喜欢下棋，比如金铲铲、酒馆战棋，偶尔玩玩一些单机游戏',
+        hobby_os_title: '常用操作系统',
+        hobby_os_body: '操作系统偏爱Linux家族的，目前笔记本在用Windows10专业版本，台式电脑正在用Ubuntu 26.04，Linux目前我感觉现在最大的问题就是驱动，其他问题还好。',
+        tools_title: 'Common Tools',
+        platforms_title: '常逛平台',
+        platforms_body: 'GitHub、Stack Overflow、Bilibili和各类开发者社区。',
+        contact_title: 'Contact',
+        contact_body: '想交流或者合作，可以通过GitHub或Email找我。',
+        realname_label: '姓名', realname_value: '司岚',
+        birth_label: '出生年月', birth_value: '2003.08.26',
+        nationality_label: '国籍', nationality_value: '中国',
+        role_label: '身份', role_value: '学生',
+        tag_graphics: 'Computer Graphics', tag_cpp: 'C++', tag_linux: 'Linux', tag_opensource: 'Open Source',
+      },
+      en: {}
+    };
+
+    const langToggle = document.getElementById('lang-toggle');
+
+    function applyLang(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      langToggle.textContent = lang === 'zh' ? 'zh-CN' : 'EN';
+      localStorage.setItem('lang', lang);
+    }
+
+    applyLang(localStorage.getItem('lang') || 'zh');
+
+    langToggle.addEventListener('click', () => {
+      const current = localStorage.getItem('lang') || 'zh';
+      applyLang(current === 'zh' ? 'en' : 'zh');
+    });
+  </script>
 </body>
 </html>
