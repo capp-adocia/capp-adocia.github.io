@@ -314,8 +314,8 @@
       <img class="avatar" src="image/githublogo.jpg" alt="头像" onerror="this.style.visibility='hidden'">
 
       <div class="profile-meta">
-        <div class="meta-item"><span data-i18n="realname_label">真实姓名</span><strong data-i18n="realname_value">待补充</strong></div>
-        <div class="meta-item"><span data-i18n="birth_label">出生年月</span><strong data-i18n="birth_value">待补充</strong></div>
+        <div class="meta-item"><span data-i18n="realname_label">真实姓名</span><strong data-i18n="realname_value">司岚</strong></div>
+        <div class="meta-item"><span data-i18n="birth_label">出生年月</span><strong data-i18n="birth_value">2003.08.26</strong></div>
         <div class="meta-item"><span data-i18n="nationality_label">国籍</span><strong data-i18n="nationality_value">中国</strong></div>
         <div class="meta-item"><span data-i18n="role_label">身份</span><strong data-i18n="role_value">开发者</strong></div>
       </div>
@@ -375,7 +375,7 @@
           </div>
         <div class="card">
             <h3 data-i18n="hobby_os_title">常用操作系统</h3>
-            <p data-i18n="hobby_os_body"></p>
+            <p data-i18n="hobby_os_body">操作系统偏爱 Linux 家族，目前笔记本在用 Windows 10 专业版，台式电脑正在用 Ubuntu 26.04。Linux 目前最大的问题是驱动，其他方面还好。</p>
           </div>
 
         </div>
@@ -466,17 +466,19 @@
     const langToggle = document.getElementById('lang-toggle');
 
     function applyLang(lang) {
-      const dict = translations[lang];
-      if (!dict) return;
+      const hasTranslation =
+        translations[lang] && Object.keys(translations[lang]).length > 0;
+      const activeLang = hasTranslation ? lang : 'zh';
+      const dict = translations[activeLang];
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) el.textContent = dict[key];
       });
 
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-      langToggle.textContent = lang === 'zh' ? 'zh-CN' : 'EN';
-      localStorage.setItem('lang', lang);
+      document.documentElement.lang = activeLang === 'zh' ? 'zh-CN' : 'en';
+      langToggle.textContent = activeLang === 'zh' ? 'zh-CN' : 'EN';
+      localStorage.setItem('lang', activeLang);
     }
 
     applyLang(localStorage.getItem('lang') || 'zh');
